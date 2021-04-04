@@ -3,7 +3,7 @@ name: pipeline-droneci-trip
 
 steps:
   - name: tsc编译
-    image: node
+    image: node:14
     depends_on: [clone]
     # volumes:
     #   - name: cache
