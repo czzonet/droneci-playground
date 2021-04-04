@@ -8,8 +8,7 @@ steps:
     #   - name: cache
     #     path: /root/.m2
     commands:
-      - npm build
-
+      - npm run build
 #   - name: 构建镜像
 #     image: plugins/docker
 #     volumes:
@@ -59,3 +58,6 @@ steps:
 trigger:
   branch:
     - master
+  event:
+    - pull_request
+    - push
