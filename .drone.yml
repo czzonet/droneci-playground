@@ -4,6 +4,7 @@ name: pipeline-droneci-trip
 steps:
   - name: tsc编译
     image: node
+    depends_on: [clone]
     # volumes:
     #   - name: cache
     #     path: /root/.m2
