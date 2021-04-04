@@ -1,0 +1,16 @@
+{
+  "name": "drone-trip",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "czzonet <czzonet@163.com>",
+  "license": "MIT",
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc --watch",
+    "start": "tsc && node ./dist/index.js"
+  },
+  "dependencies": {
+    "@types/express": "^4.17.11",
+    "express": "^4.17.1"
+  }
+}
