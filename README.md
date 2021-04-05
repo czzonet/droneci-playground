@@ -6,3 +6,5 @@ An express project uses drone ci.
 - local runner
 
 runners is a lot.
+
+test robot
