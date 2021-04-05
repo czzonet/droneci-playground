@@ -10,40 +10,40 @@ steps:
     #     path: /root/.m2
     commands:
       - npm run build
-#   - name: 构建镜像
-#     image: plugins/docker
-#     volumes:
-#       - name: docker
-#         path: /var/run/docker.sock
-#     settings:
-#       username:
-#         from_secret: docker_user
-#       password:
-#         from_secret: docker_pass
-#       repo: { your-repo }
-#       registry: { your-registry }
-#       tags: ${DRONE_BUILD_NUMBER}
+  #   - name: 构建镜像
+  #     image: plugins/docker
+  #     volumes:
+  #       - name: docker
+  #         path: /var/run/docker.sock
+  #     settings:
+  #       username:
+  #         from_secret: docker_user
+  #       password:
+  #         from_secret: docker_pass
+  #       repo: { your-repo }
+  #       registry: { your-registry }
+  #       tags: ${DRONE_BUILD_NUMBER}
 
-#   - name: Kubernetes 部署
-#     image: guoxudongdocker/kubectl:v1.14.1
-#     volumes:
-#       - name: kube
-#         path: /root/.kube
-#     commands:
-#       - sed -i "s/#Tag/${DRONE_BUILD_NUMBER}/g" deployment.yaml
-#       - kubectl apply -f deployment.yaml
+  #   - name: Kubernetes 部署
+  #     image: guoxudongdocker/kubectl:v1.14.1
+  #     volumes:
+  #       - name: kube
+  #         path: /root/.kube
+  #     commands:
+  #       - sed -i "s/#Tag/${DRONE_BUILD_NUMBER}/g" deployment.yaml
+  #       - kubectl apply -f deployment.yaml
 
-- name: 钉钉通知
-  image: guoxudongdocker/drone-dingtalk
-  settings:
-    token:
-      from_secret: dingding
-    type: markdown
-    message_color: true
-    message_pic: true
-    sha_link: true
-  when:
-    status: [failure, success]
+  - name: 钉钉通知
+    image: guoxudongdocker/drone-dingtalk
+    settings:
+      token:
+        from_secret: dingding
+      type: markdown
+      message_color: true
+      message_pic: true
+      sha_link: true
+    when:
+      status: [failure, success]
 
 # volumes:
 # - name: cache
