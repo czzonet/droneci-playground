@@ -33,17 +33,17 @@ steps:
 #       - sed -i "s/#Tag/${DRONE_BUILD_NUMBER}/g" deployment.yaml
 #       - kubectl apply -f deployment.yaml
 
-# - name: 钉钉通知
-#   image: guoxudongdocker/drone-dingtalk
-#   settings:
-#     token:
-#       from_secret: dingding
-#     type: markdown
-#     message_color: true
-#     message_pic: true
-#     sha_link: true
-#   when:
-#     status: [failure, success]
+- name: 钉钉通知
+  image: guoxudongdocker/drone-dingtalk
+  settings:
+    token:
+      from_secret: dingding
+    type: markdown
+    message_color: true
+    message_pic: true
+    sha_link: true
+  when:
+    status: [failure, success]
 
 # volumes:
 # - name: cache
