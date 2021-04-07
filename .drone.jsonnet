@@ -14,7 +14,7 @@ local buildApps() = {
     'export ALL_BEGIN=$$(date +%s)',
     // Start actual jar building
     'echo "Building koodisto *********************"',
-    'echo ALL_BEGIN',
+    'echo $ALL_BEGIN',
     'export COMMAND_BEGIN=$$(date +%s)',
     'npm run build',
   ],
