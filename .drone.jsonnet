@@ -15,6 +15,7 @@ local buildApps() = {
 local messageDingtalk() = {
   name: '钉钉通知',
   image: 'guoxudongdocker/drone-dingtalk',
+  depends_on: ['tsc编译'],
   settings: {
     token: {
       from_secret: 'dingding',
