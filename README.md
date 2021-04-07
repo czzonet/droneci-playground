@@ -1,4 +1,4 @@
-# droneci-trip
+# droneci-playground
 
 [![Build Status](http://121.5.237.247/api/badges/czzonet/droneci-trip/status.svg)](http://121.5.237.247/czzonet/droneci-trip)
 
