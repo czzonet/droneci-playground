@@ -42,6 +42,16 @@ local messageDingtalk() = {
   },
 };
 
+local simpleShell() = {
+  name: 'shell',
+  image: 'alpine',
+  commands: [
+    'whoami',
+    'pwd',
+    'ls -al',
+  ],
+};
+
 // Drone pipelines
 [
   {
@@ -50,6 +60,7 @@ local messageDingtalk() = {
     steps: [
       buildApps(),
       messageDingtalk(),
+      simpleShell(),
     ],
     trigger: {
       branch: ['master'],
