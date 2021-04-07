@@ -8,6 +8,13 @@ local buildApps() = {
   //   - name: cache
   //     path: /root/.m2
   commands: [
+    'echo "Starting step: buildApps *********************"',
+    'whoami',
+    'pwd',
+    'export ALL_BEGIN=$$(date +%s)',
+    // Start actual jar building
+    'echo "Building koodisto *********************"',
+    'export COMMAND_BEGIN=$$(date +%s)',
     'npm run build',
   ],
 };
