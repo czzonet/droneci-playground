@@ -1,6 +1,6 @@
 # droneci-playground
 
-[![Build Status](http://121.5.237.247/api/badges/czzonet/droneci-trip/status.svg)](http://121.5.237.247/czzonet/droneci-trip)
+[![Build Status](http://121.5.237.247/api/badges/czzonet/droneci-playground/status.svg)](http://121.5.237.247/czzonet/droneci-playground)
 
 An express project uses drone ci.
 
