@@ -13,10 +13,14 @@ local buildApps() = {
     'pwd',
     'export ALL_BEGIN=$$(date +%s)',
     // Start actual jar building
-    'echo "Building koodisto *********************"',
+    'echo "Building *********************"',
     'echo $ALL_BEGIN',
     'export COMMAND_BEGIN=$$(date +%s)',
     'npm run build',
+    'export END=$$(date +%s)',
+    'export DURATION=$$(($${END}-$${COMMAND_BEGIN}))',
+    'echo Build duration $$(($$DURATION / 60)) minutes and $$(($$DURATION % 60)) seconds',
+
   ],
 };
 
