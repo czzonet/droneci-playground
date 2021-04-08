@@ -58,7 +58,7 @@ local simpleShell() = {
   ],
 };
 
-local useCache(kind='restore') = {
+local useCache(kind='restore', depend='') = {
   name: kind + '-cache',
   image: 'drillster/drone-volume-cache',
   settings: {
@@ -71,8 +71,8 @@ local useCache(kind='restore') = {
     [if kind == 'restore' then 'restore']: true,
     [if kind == 'rebuild' then 'rebuild']: true,
   },
-  [if kind == 'rebuild' then 'depends_on']: [
-    'node',
+  [if depend != '' then 'depends_on']: [
+    depend,
   ],
   volumes: [
     {
@@ -100,7 +100,7 @@ local useCache(kind='restore') = {
     steps: [
       useCache('restore'),
       simpleShell(),
-      useCache('rebuild'),
+      useCache('rebuild', 'node'),
     ],
     trigger: {
       branch: ['master'],
