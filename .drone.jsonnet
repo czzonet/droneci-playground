@@ -71,6 +71,9 @@ local useCache(kind='restore') = {
     [if kind == 'restore' then 'restore']: true,
     [if kind == 'rebuild' then 'rebuild']: true,
   },
+  [if kind == 'rebuild' then 'depends_on']: [
+    'node',
+  ],
   volumes: [
     {
       name: 'cache',
