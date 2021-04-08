@@ -72,7 +72,7 @@ local simpleShell() = {
   },
   {
     kind: 'pipeline',
-    name: 'pipeline-droneci-trip',
+    name: 'platform',
     platform: {
       os: 'linux',
       arch: 'amd64',
