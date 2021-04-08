@@ -55,6 +55,7 @@ local simpleShell() = {
 local useCache() = {
   name: 'cache',
   image: 'alpine',
+  privileged: true,
   volumes: [
     {
       name: 'cache',
