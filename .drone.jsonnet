@@ -52,6 +52,8 @@ local simpleShell() = {
     'whoami',
     'pwd',
     'ls -al',
+    'npm config set cache ./.npm-cache --global',
+    'npm install',
   ],
 };
 
@@ -62,7 +64,7 @@ local restoreCache() = {
     restore: true,
     mount: [
       './.npm-cache',
-      'node_modules',
+      './node_modules',
       './_gopath',
     ],
   },
