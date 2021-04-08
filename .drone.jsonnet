@@ -88,4 +88,22 @@ local simpleShell() = {
       event: ['push', 'pull_request'],
     },
   },
+  {
+    kind: 'pipeline',
+    name: 'platform-arm',
+    platform: {
+      os: 'linux',
+      arch: 'arm64',
+    },
+    // node: {
+    //   datacenter: 'A',
+    // },
+    steps: [
+      simpleShell(),
+    ],
+    trigger: {
+      branch: ['master'],
+      event: ['push', 'pull_request'],
+    },
+  },
 ]
