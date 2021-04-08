@@ -43,8 +43,8 @@ local messageDingtalk() = {
 };
 
 local simpleShell() = {
-  name: 'shell',
-  image: 'alpine',
+  name: 'node',
+  image: 'node:14',
   depends_on: [
     'restore-cache',
   ],
@@ -58,16 +58,18 @@ local simpleShell() = {
   ],
 };
 
-local restoreCache() = {
-  name: 'restore-cache',
+local useCache(kind='restore') = {
+  name: kind + '-cache',
   image: 'drillster/drone-volume-cache',
   settings: {
-    restore: true,
+    // restore: true,
     mount: [
       './.npm-cache',
       './node_modules',
       './_gopath',
     ],
+    [if kind == 'restore' then 'restore']: true,
+    [if kind == 'rebuild' then 'rebuild']: true,
   },
   volumes: [
     {
@@ -93,8 +95,9 @@ local restoreCache() = {
     //   datacenter: 'A',
     // },
     steps: [
-      restoreCache(),
+      useCache('restore'),
       simpleShell(),
+      useCache('rebuild'),
     ],
     trigger: {
       branch: ['master'],
