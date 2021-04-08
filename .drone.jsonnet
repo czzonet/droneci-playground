@@ -45,6 +45,9 @@ local messageDingtalk() = {
 local simpleShell() = {
   name: 'shell',
   image: 'alpine',
+  depends_on: [
+    'restore-cache',
+  ],
   commands: [
     'whoami',
     'pwd',
@@ -52,23 +55,26 @@ local simpleShell() = {
   ],
 };
 
-local useCache() = {
-  name: 'cache',
-  image: 'alpine',
-  privileged: true,
+local restoreCache() = {
+  name: 'restore-cache',
+  image: 'drillster/drone-volume-cache',
+  settings: {
+    restore: true,
+    mount: [
+      './.npm-cache',
+      'node_modules',
+      './_gopath',
+    ],
+  },
   volumes: [
     {
       name: 'cache',
-      host: {
-        path: '/drone/src/node_modules',
-      },
+      path: '/cache',
     },
   ],
-  commands: [
-    'whoami',
-    'pwd',
-    'ls -al',
-  ],
+  // when:
+  //   event:
+  //     - push
 };
 
 // Drone pipelines
@@ -84,8 +90,8 @@ local useCache() = {
     //   datacenter: 'A',
     // },
     steps: [
+      restoreCache(),
       simpleShell(),
-      useCache(),
     ],
     trigger: {
       branch: ['master'],
@@ -95,7 +101,7 @@ local useCache() = {
       {
         name: 'cache',
         host: {
-          path: '/Users/czz/Temp',
+          path: '/tmp/drone_cache',
         },
       },
     ],
