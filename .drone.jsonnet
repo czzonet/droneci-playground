@@ -70,4 +70,22 @@ local simpleShell() = {
       event: ['push', 'pull_request'],
     },
   },
+  {
+    kind: 'pipeline',
+    name: 'pipeline-droneci-trip',
+    platform: {
+      os: 'linux',
+      arch: 'amd64',
+    },
+    // node: {
+    //   datacenter: 'A',
+    // },
+    steps: [
+      simpleShell(),
+    ],
+    trigger: {
+      branch: ['master'],
+      event: ['push', 'pull_request'],
+    },
+  },
 ]
