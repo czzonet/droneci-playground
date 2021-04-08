@@ -57,6 +57,9 @@ local simpleShell() = {
   {
     kind: 'pipeline',
     name: 'pipeline-droneci-trip',
+    node: {
+      datacenter: 'A',
+    },
     steps: [
       buildApps(),
       messageDingtalk(),
