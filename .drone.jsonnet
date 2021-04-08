@@ -52,42 +52,26 @@ local simpleShell() = {
   ],
 };
 
+local useCache() = {
+  name: 'shell',
+  image: 'alpine',
+  volumes: [
+    {
+      name: 'cache',
+      host: {
+        path: '/drone/src/node_modules',
+      },
+    },
+  ],
+  commands: [
+    'whoami',
+    'pwd',
+    'ls -al',
+  ],
+};
+
 // Drone pipelines
 [
-  {
-    kind: 'pipeline',
-    name: 'pipeline-droneci-trip',
-    // node: {
-    //   datacenter: 'A',
-    // },
-    steps: [
-      buildApps(),
-      messageDingtalk(),
-      simpleShell(),
-    ],
-    trigger: {
-      branch: ['master'],
-      event: ['push', 'pull_request'],
-    },
-  },
-  {
-    kind: 'pipeline',
-    name: 'platform',
-    platform: {
-      os: 'linux',
-      arch: 'amd64',
-    },
-    // node: {
-    //   datacenter: 'A',
-    // },
-    steps: [
-      simpleShell(),
-    ],
-    trigger: {
-      branch: ['master'],
-      event: ['push', 'pull_request'],
-    },
-  },
   {
     kind: 'pipeline',
     name: 'platform-arm',
@@ -100,10 +84,19 @@ local simpleShell() = {
     // },
     steps: [
       simpleShell(),
+      useCache(),
     ],
     trigger: {
       branch: ['master'],
       event: ['push', 'pull_request'],
     },
+    volumes: [
+      {
+        name: 'cache',
+        host: {
+          path: '/Users/czz/Temp',
+        },
+      },
+    ],
   },
 ]
