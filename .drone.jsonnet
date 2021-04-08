@@ -52,8 +52,9 @@ local simpleShell() = {
     'whoami',
     'pwd',
     'ls -al',
-    'npm config set cache ./.npm-cache --global',
-    'npm install',
+    // 'npm config set cache ./.npm-cache --global',
+    // 'npm install',
+    'yarn',
   ],
 };
 
