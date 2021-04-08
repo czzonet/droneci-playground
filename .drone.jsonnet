@@ -53,7 +53,7 @@ local simpleShell() = {
 };
 
 local useCache() = {
-  name: 'shell',
+  name: 'cache',
   image: 'alpine',
   volumes: [
     {
